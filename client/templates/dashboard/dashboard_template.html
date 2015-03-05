@@ -1,0 +1,9 @@
+<template name="dashboardTemplate">
+    {{#each devices}}
+        <div class="row cs-list-item">
+            <div class="md-col-12">
+                {{>dashboardItemTemplate}}
+            </div>
+        </div>
+    {{/each}}
+</template>

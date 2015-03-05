@@ -1,0 +1,50 @@
+<template name="mypageTemplate">
+    <div class="row">
+        <div clas="md-col-12">
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#register-device-modal">Register Device</button>
+        </div>
+        {{>registerDeviceForm}}
+    </div>
+    {{#each devices}}
+        <div class="row">
+            <div class="md-col-12">
+                {{>mypageItemTemplate}}
+            </div>
+        </div>
+    {{/each}}
+</template>
+
+<template name="registerDeviceForm">
+    <div class="modal fade" id="register-device-modal" tabindex="-1" role="dialog" aria-labelledby="registerDeviceModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Register Device</h4>
+                </div>
+                <div class="modal-body">
+                    {{#autoForm type="insert" collection=deviceCollection}}
+                        <div class="form-group {{#if afFieldIsInvalid name='deviceType'}}has-error{{/if}}">
+                            <label class="control-label">{{afFieldLabelText name='deviceType'}}</label>
+                            {{> afFieldInput name='deviceType'}}
+                            {{#if afFieldIsInvalid name='deviceType'}}
+                                <span class="help-block">{{{afFieldMessage name='deviceType'}}}</span>
+                            {{/if}}
+                        </div>
+                        <div class="form-group {{#if afFieldIsInvalid name='description'}}has-error{{/if}}">
+                            <label class="control-label">{{afFieldLabelText name='description'}}</label>
+                            {{> afFieldInput name='description'}}
+                            {{#if afFieldIsInvalid name='description'}}
+                                <span class="help-block">{{{afFieldMessage name='description'}}}</span>
+                            {{/if}}
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    {{/autoForm}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
