@@ -6,3 +6,9 @@ Template.dashboardTemplate.helpers({
        return Devices.find();
    }
 });
+
+Template.dashboardItemTemplate.helpers({
+   temperature: function(){
+       
+   }
+});
