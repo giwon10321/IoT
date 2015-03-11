@@ -15,4 +15,6 @@ accounts-password
 ian:accounts-ui-bootstrap-3
 aldeed:autoform
 random
-mrt:chartjs
+rafaelhdr:google-charts
+meteorhacks:kadira
+sacha:spin

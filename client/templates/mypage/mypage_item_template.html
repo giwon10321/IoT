@@ -1,3 +1,9 @@
 <template name="mypageItemTemplate">
-
+    <li class="list-group-item clearfix">
+        {{description}} ({{deviceType}}, {{deviceToken}})
+        {{#if currentUser}}
+            <button class="btn btn-xs btn-danger pull-right cs-btn delete">Delete</button>
+            <button class="btn btn-xs btn-warning pull-right cs-btn edit">Edit</button>
+        {{/if}}
+    </li>
 </template>

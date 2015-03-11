@@ -12,10 +12,13 @@ Meteor.methods({
 
         var user = Meteor.user();
         var device = Devices.findOne({userId: user._id, deviceToken: values["deviceToken"]});
-        console.log(device);
         var temperature = _.extend(values,{
-           userId: user._id
+            userId: user._id,
+            deviceId: device._id
         });
-        return true;
+
+        var temperatureId = Temperatures.insert(temperature);
+
+        return temperatureId;
     }
 });

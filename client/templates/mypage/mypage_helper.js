@@ -6,3 +6,15 @@ Template.mypageTemplate.helpers({
         return Devices.find();
     }
 });
+
+Template.mypageTemplate.events({
+    'click .edit': function(){
+
+    },
+    'click .delete': function(e){
+        e.preventDefault();
+        if(confirm("Delete?")){
+            Devices.remove(this._id);
+        }
+    }
+});

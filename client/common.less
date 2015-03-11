@@ -3,10 +3,35 @@
   margin-bottom: @bottom;
 }
 
+.margin(@top,@bottom,@right,@left){
+  margin-top: @top;
+  margin-bottom: @bottom;
+  margin-right: @right;
+  margin-left: @left;
+}
+
 body{
   padding-top : 70px;
 }
 
 .cs-list-item{
   .top-bottom-margin(10px,10px);
+}
+
+.cs-btn{
+  .margin(0,0,0,5px);
+}
+
+.cs-circle{
+  height: 300px;
+}
+
+.cs-circle > svg{
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.cs-circle > p {
+  font-size: 80px
 }

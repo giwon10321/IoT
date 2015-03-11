@@ -1,14 +1,45 @@
-<Template name="dashboardItemTemplate">
+<template name="dashboardItemTemplate">
     <div class="panel panel-default cs-list-item">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{description}}</h3>
+        <div class="panel-heading clearfix">
+            <h3 class="panel-title">
+                {{description}}
+                <button class="btn btn-xs btn-info pull-right detail">detail</button>
+                <!--<a class="btn btn-xs btn-info pull-right">detail</a>-->
+            </h3>
         </div>
         <div class="panel-body">
-            <ul class="list-unstyled">
-                <!--{{#if }}-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default cs-list-item">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">온도(&deg;C)</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{>dashboardTemperatureCircle}}
+                            <!--{{#with temp _id}}-->
+                                <!--{{>dashboardTemperatureCircle}}-->
+                            <!--{{/with}}-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default cs-list-item">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">습도(%)</h3>
+                        </div>
+                        <div class="panel-body">
 
-                <!--{{/if}}-->
-            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
         </div>
     </div>
-</Template>
+</template>
+
+<template name="dashboardTemperatureCircle">
+    <div class="cs-circle" id="temp-circle-{{_id}}"></div>
+</template>
