@@ -6,11 +6,22 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12">
-                    <div id="temperature-chart-{{_id}}">
-
-                    </div>
+                    {{>dashboardDetailTempChart}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{>dashboardDetailHumiChart}}
                 </div>
             </div>
         </div>
     </div>
+</template>
+
+<template name="dashboardDetailTempChart">
+    <div id="temperature-chart-{{_id}}"></div>
+</template>
+
+<template name="dashboardDetailHumiChart">
+    <div id="humidity-chart-{{_id}}"></div>
 </template>

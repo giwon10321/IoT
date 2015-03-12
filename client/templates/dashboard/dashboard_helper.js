@@ -42,7 +42,7 @@ Template.dashboardTemperatureCircle.rendered = function(){
         trailWidth: 6,
         text: {
             value: '0',
-            className: 'temp-circle-text'
+            className: 'circle-text'
         },
         step: function(state, bar) {
             bar.setText((bar.value() * 100).toFixed(0));
@@ -58,7 +58,37 @@ Template.dashboardTemperatureCircle.rendered = function(){
     });
 };
 
+Template.dashboardHumidityCircle.rendered = function(){
+
+    var self = this;
+    var $target = "#humi-circle-"+self.data._id;
+    var circle = new ProgressBar.Circle($target, {
+        color: '#3366FF',
+        strokeWidth: 6,
+        trailWidth: 6,
+        text: {
+            value: '0',
+            className: 'circle-text'
+        },
+        step: function(state, bar) {
+            bar.setText((bar.value() * 100).toFixed(0));
+        }
+    });
+    Tracker.autorun(function(){
+        var temperature = Humidities.findOne({deviceId: self.data._id}, {sort: {measuredDate: -1}});
+        if(temperature){
+            circle.animate(temperature.value/ 100);
+        }else{
+            circle.animate(0);
+        }
+    });
+};
+
 Template.dashboardDetailTemplate.rendered = function(){
+
+};
+
+Template.dashboardDetailTempChart.rendered = function(){
     var self = this;
     var target = "temperature-chart-"+self.data._id;
     var columns = [
@@ -81,6 +111,39 @@ Template.dashboardDetailTemplate.rendered = function(){
     Tracker.autorun(function(){
         var temperatures = Temperatures.find({deviceId: self.data._id}, {sort: {measuredDate: 1}}).fetch();
         var dataset = createDataset(temperatures, columns);
+        var options = {
+            colums: columns,
+            dataset: dataset,
+            graphOptions: graphOptions
+        };
+
+        drawChart(target, options);
+    });
+};
+
+Template.dashboardDetailHumiChart.rendered = function(){
+    var self = this;
+    var target = "humidity-chart-"+self.data._id;
+    var columns = [
+        {
+            type: 'datetime',
+            name: 'measuredDate'
+        },
+        {
+            type: 'number',
+            name: 'value'
+        }
+    ];
+
+    var graphOptions = {
+        title: "습도(%)",
+        height: 300,
+        curveType: 'function',
+        colors : ['#3366FF']
+    };
+    Tracker.autorun(function(){
+        var humidities = Humidities.find({deviceId: self.data._id}, {sort: {measuredDate: 1}}).fetch();
+        var dataset = createDataset(humidities, columns);
         var options = {
             colums: columns,
             dataset: dataset,

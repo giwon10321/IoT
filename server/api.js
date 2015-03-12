@@ -20,5 +20,24 @@ Meteor.methods({
         var temperatureId = Temperatures.insert(temperature);
 
         return temperatureId;
+    },
+    insertHumi: function(values){
+        check(this.userId, String);
+        check(values,{
+            measuredDate: Date,
+            value: Number,
+            deviceToken: String
+        });
+
+        var user = Meteor.user();
+        var device = Devices.findOne({userId: user._id, deviceToken: values["deviceToken"]});
+        var humidity = _.extend(values,{
+            userId: user._id,
+            deviceId: device._id
+        });
+
+        var humidityId = Humidities.insert(humidity);
+        
+        return humidityId;
     }
 });

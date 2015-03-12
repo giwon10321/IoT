@@ -16,9 +16,6 @@
                         </div>
                         <div class="panel-body">
                             {{>dashboardTemperatureCircle}}
-                            <!--{{#with temp _id}}-->
-                                <!--{{>dashboardTemperatureCircle}}-->
-                            <!--{{/with}}-->
                         </div>
                     </div>
                 </div>
@@ -28,12 +25,19 @@
                             <h3 class="panel-title">습도(%)</h3>
                         </div>
                         <div class="panel-body">
-
+                            {{>dashboardHumidityCircle}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="panel panel-default cs-list-item">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">조도(lx)</h3>
+                        </div>
+                        <div class="panel-body">
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,4 +46,8 @@
 
 <template name="dashboardTemperatureCircle">
     <div class="cs-circle" id="temp-circle-{{_id}}"></div>
+</template>
+
+<template name="dashboardHumidityCircle">
+    <div class="cs-circle" id="humi-circle-{{_id}}"></div>
 </template>

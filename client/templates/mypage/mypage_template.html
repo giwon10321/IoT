@@ -26,26 +26,7 @@
                     <h4 class="modal-title">Register Device</h4>
                 </div>
                 <div class="modal-body">
-                    {{#autoForm id="register-device-form" type="insert" collection=deviceCollection}}
-                        <div class="form-group {{#if afFieldIsInvalid name='deviceType'}}has-error{{/if}}">
-                            <label class="control-label">{{afFieldLabelText name='deviceType'}}</label>
-                            {{> afFieldInput name='deviceType'}}
-                            {{#if afFieldIsInvalid name='deviceType'}}
-                                <span class="help-block">{{{afFieldMessage name='deviceType'}}}</span>
-                            {{/if}}
-                        </div>
-                        <div class="form-group {{#if afFieldIsInvalid name='description'}}has-error{{/if}}">
-                            <label class="control-label">{{afFieldLabelText name='description'}}</label>
-                            {{> afFieldInput name='description'}}
-                            {{#if afFieldIsInvalid name='description'}}
-                                <span class="help-block">{{{afFieldMessage name='description'}}}</span>
-                            {{/if}}
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Register</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
-                        </div>
-                    {{/autoForm}}
+                    {{>quickForm id="register-device-form" type="insert" collection=deviceCollection fields="deviceType, description"}}
                 </div>
             </div>
         </div>
