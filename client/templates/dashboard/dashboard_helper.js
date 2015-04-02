@@ -109,7 +109,7 @@ Template.dashboardDetailTempChart.rendered = function(){
         colors : ['#FF6666']
     };
     Tracker.autorun(function(){
-        var temperatures = Temperatures.find({deviceId: self.data._id}, {sort: {measuredDate: 1}}).fetch();
+        var temperatures = Temperatures.find({deviceId: self.data._id}, {sort: {measuredDate: -1}, limit: 100}).fetch();
         var dataset = createDataset(temperatures, columns);
         var options = {
             colums: columns,
@@ -142,7 +142,7 @@ Template.dashboardDetailHumiChart.rendered = function(){
         colors : ['#3366FF']
     };
     Tracker.autorun(function(){
-        var humidities = Humidities.find({deviceId: self.data._id}, {sort: {measuredDate: 1}}).fetch();
+        var humidities = Humidities.find({deviceId: self.data._id}, {sort: {measuredDate: -1}, limit: 100}).fetch();
         var dataset = createDataset(humidities, columns);
         var options = {
             colums: columns,
